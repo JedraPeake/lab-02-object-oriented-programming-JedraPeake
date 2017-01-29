@@ -8,6 +8,12 @@ import javax.annotation.Nonnull;
 public interface Course {
 
     /**
+     * Get the unique course code for the Course.
+     * @return Non-{@code null} or empty code for the course.
+     */
+    String getCourseCode();
+
+    /**
      * Set the name of the course
      * @param name Name of the course
      *
