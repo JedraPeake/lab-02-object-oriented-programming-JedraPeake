@@ -9,13 +9,13 @@ import java.util.List;
 public interface Department {
 
     /**
-     * Get the name of the Department
+     * Get the unique name of the Department
      * @return Non-{@code null} name
      */
     String getName();
 
     /**
-     * Return the name of the department.
+     * Return the unique name of the department.
      * @param name Non-{@code null} name
      *
      * @throws IllegalArgumentException if {@code name} is empty
