@@ -9,12 +9,12 @@ public class ProvidedModelFactory {
 
     /**
      * Creates the model shown in
-     * <a href="https://uwoece-se2205b-2017.github.io/labs/02-oop-serialization#question-1">Q2 Deliverable</a>.
+     * <a href="https://uwoece-se2205b-2017.github.io/labs/02-oop-serialization#question-0">Q1 Deliverable</a>.
      *
      * @return List of Department values
      */
     public static List<Department> createModel() {
-        // see Deliverable for Q2
+        // see Deliverable for Q1
         return null;
     }
 }
