@@ -31,14 +31,12 @@ public interface Course {
     /**
      * Change the {@link Department} for a {@code Course}
      * @param newDepartment New department a course resides in.
-     *
-     * @throws NullPointerException if {@code newDepartment} is {@code null}.
      */
-    void setDepartment(@Nonnull Department newDepartment);
+    void setDepartment(Department newDepartment);
 
     /**
      * Get the current {@link Department}
-     * @return Non-{@code null} department.
+     * @return Possibly {@code null} department.
      */
     Department getDepartment();
 
