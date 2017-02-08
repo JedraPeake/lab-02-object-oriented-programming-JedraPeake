@@ -16,6 +16,7 @@ public class RealCourse implements Course{
     Department department;
     int cap;
     List<Student> students;
+    public int maxStudents;
 
     public String getCourseCode(){
      return this.courseCode;
@@ -41,8 +42,14 @@ public class RealCourse implements Course{
         return this.cap;
     }
 
-    public void enrollStudent(@Nonnull Student student){
-        students.add(student);
+    public void enrollStudent(@Nonnull Student student) throws CourseMaxCapacityStoreException{
+        if(this.students == null){
+            this.students.add(0, student);
+        }
+        if (this.maxStudents >= this.students.size()){
+            this.students.add(student);
+        }
+        throw new CourseMaxCapacityStoreException();
     }
 
     public Student removeStudent(@Nonnull Student student){
@@ -62,5 +69,13 @@ public class RealCourse implements Course{
 
     public List<Student> getEnrolledStudents(){
         return this.students;
+    }
+
+    public void setMaxStudents(int n){
+        this.maxStudents = n;
+    }
+
+    public int getMaxStudents(){
+        return this.maxStudents;
     }
 }

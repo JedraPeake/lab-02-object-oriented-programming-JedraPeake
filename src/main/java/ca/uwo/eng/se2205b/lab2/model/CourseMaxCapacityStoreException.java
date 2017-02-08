@@ -5,6 +5,6 @@ package ca.uwo.eng.se2205b.lab2.model;
  */
 public class CourseMaxCapacityStoreException extends Exception {
     public CourseMaxCapacityStoreException(){
-
+        super(Course.class + " can not store " + Student.class + ", maximum capacity reached.");
     }
 }

@@ -1,13 +1,15 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by PeakeAndSons on 2017-02-03.
  */
 public class RealStudent implements Student{
     private String firstName;
     private String lastName;
-    private String[] courses;
-    private String department;
+    ArrayList<Course> courses;
+    Department department;
     private Long id;
 
     public void setFirstName(String s) {
@@ -32,42 +34,43 @@ public class RealStudent implements Student{
         return null;
     }
 
-    public String[] viewAllCourses() {
-        if(this.courses.length>0){
+    public ArrayList<Course> viewAllCourses() {
+        if(this.courses.size() >0){
             return courses;
         }
         return null;
     }
 
-    public String dropCourse(String s) {
+    public Course dropCourse(Course s) {
         int index = -1;
-        for(int i =0; i< this.courses.length;i++){
-            if(this.courses[i] == s){
+        for(int i =0; i< this.courses.size();i++){
+            Course temp = courses.get(i);
+            if(temp == s){
                 index=i;
             }
         }
         if(index == -1){
             return null;
         }
-        String temp = courses[index];
-        for(int i = index + 1; i < this.courses.length; i++) {
-            this.courses[i - 1] = this.courses[i];
+        Course temp = courses.get(index);
+        for(int i = index + 1; i < this.courses.size(); i++) {
+            this.courses.set((i-1), this.courses.get(i));
         }
         return temp;
     }
 
-    public void takeCourse(String s) {
-        int size = this.courses.length;
-        this.courses[size++] = s;
+    public void takeCourse(Course s) {
+        int temp = this.courses.size() +1;
+        this.courses.set(temp, s);
     }
 
-    public void setDepartment(String s) {
+    public void setDepartment(Department s) {
         if(s != null){
             this.department = s;
         }
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return this.department;
     }
 
