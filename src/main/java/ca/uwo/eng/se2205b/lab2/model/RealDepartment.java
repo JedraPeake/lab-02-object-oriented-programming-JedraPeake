@@ -7,9 +7,9 @@ import java.util.List;
  * Created by PeakeAndSons on 2017-02-03.
  */
 public class RealDepartment implements Department {
-    String name;
-    List<Student> students;
-    List<Course> courses;
+    public String name;
+    public List<Student> students;
+    public List<Course> courses;
 
 
     public String getName() {

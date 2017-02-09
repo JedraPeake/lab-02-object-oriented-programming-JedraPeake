@@ -6,11 +6,12 @@ import java.util.ArrayList;
  * Created by PeakeAndSons on 2017-02-03.
  */
 public class RealStudent implements Student{
-    private String firstName;
-    private String lastName;
-    ArrayList<Course> courses;
-    Department department;
-    private Long id;
+    public String firstName;
+    public String lastName;
+    public String Name;
+    public ArrayList<Course> courses;
+    public Department department;
+    public Long id;
 
     public void setFirstName(String s) {
         this.firstName = s;
@@ -19,6 +20,17 @@ public class RealStudent implements Student{
     public String getFirstName() {
         if(this.firstName != null){
             return this.firstName;
+        }
+        return null;
+    }
+
+    public void setName(String s) {
+        this.Name = s;
+    }
+
+    public String getName() {
+        if(this.Name != null){
+            return this.Name;
         }
         return null;
     }

@@ -1,6 +1,7 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,14 +16,16 @@ public class RealCourse implements Course{
     String courseName;
     Department department;
     int cap;
-    List<Student> students;
-    public int maxStudents;
+    ArrayList<Student> students= new ArrayList<Student>();
 
     public String getCourseCode(){
      return this.courseCode;
     }
 
     public void setName(@Nonnull String name){
+        if(name.equals("")){
+            throw new IllegalArgumentException();
+        }
         this.courseName = name;
     }
 
@@ -35,6 +38,9 @@ public class RealCourse implements Course{
     }
 
     public Department getDepartment(){
+        if(this.department == null){
+            return null;
+        }
         return this.department;
     }
 
@@ -43,39 +49,62 @@ public class RealCourse implements Course{
     }
 
     public void enrollStudent(@Nonnull Student student) throws CourseMaxCapacityStoreException{
-        if(this.students == null){
-            this.students.add(0, student);
+        if(student == null){
+            throw new NullPointerException();
         }
-        if (this.maxStudents >= this.students.size()){
+        if (this.cap > this.students.size()){
             this.students.add(student);
         }
-        throw new CourseMaxCapacityStoreException();
+        else{
+            throw new CourseMaxCapacityStoreException();
+        }
     }
 
     public Student removeStudent(@Nonnull Student student){
+        if(student == null){
+            throw new NullPointerException();
+        }
         int temp = -1;
         for (int i = 0; i < students.size() ; i++){
-            if(students.contains(student)){
-                temp = i;
+            if (student == students.get(i)){
+                temp = i ;
             }
         }
+
         if(temp == -1) {
             return null;
         }
+
         Student removed = students.get(temp);
         students.remove(temp);
         return removed;
     }
 
     public List<Student> getEnrolledStudents(){
-        return this.students;
+        List<Student> temp = new ArrayList<>();
+        for(int i =0; i<students.size();i++){
+            temp.add(i, students.get(i));
+        }
+        return temp;
     }
 
     public void setMaxStudents(int n){
-        this.maxStudents = n;
+        this.cap = n;
     }
 
-    public int getMaxStudents(){
-        return this.maxStudents;
+    public static void main(String [] args) throws CourseMaxCapacityStoreException {
+        Course temp = new RealCourse();
+        Student me = new RealStudent();
+        me.setFirstName("hi");
+        Student meme = new RealStudent();
+        meme.setFirstName("hey");
+        temp.setMaxStudents(2);
+        temp.enrollStudent(me);
+        temp.enrollStudent(meme);
+        System.out.println(temp.getEnrolledStudents());
+        temp.removeStudent(me);
+        System.out.println(temp.getEnrolledStudents());
+
+
     }
 }

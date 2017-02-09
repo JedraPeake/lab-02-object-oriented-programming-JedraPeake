@@ -5,8 +5,6 @@ import java.util.ArrayList;
 /**
  * Created by PeakeAndSons on 2017-02-03.
  */
-//public class Student {
-//}
 public interface Student {
 
     public void setFirstName(String s);
@@ -14,6 +12,10 @@ public interface Student {
 
     public void setLastName(String s);
     public String getLastName();
+
+    public void setName(String s);
+    public String getName();
+
 
     public ArrayList<Course> viewAllCourses();
     public Course dropCourse(Course s);

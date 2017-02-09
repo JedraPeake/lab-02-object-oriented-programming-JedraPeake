@@ -70,6 +70,4 @@ public interface Course {
 
     public void setMaxStudents(int n);
 
-    public int getMaxStudents();
-
 }
