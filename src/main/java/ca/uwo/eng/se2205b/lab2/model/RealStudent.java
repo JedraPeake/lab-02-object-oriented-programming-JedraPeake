@@ -8,12 +8,17 @@ import java.util.ArrayList;
 public class RealStudent implements Student{
     public String firstName;
     public String lastName;
-    public String Name;
-    public ArrayList<Course> courses;
+    ArrayList<Course> courses= new ArrayList<Course>();
     public Department department;
     public Long id;
 
     public void setFirstName(String s) {
+        if(s.equals("")){
+            throw new IllegalStateException();
+        }
+        if(s == null){
+            throw new NullPointerException();
+        }
         this.firstName = s;
     }
 
@@ -24,18 +29,31 @@ public class RealStudent implements Student{
         return null;
     }
 
-    public void setName(String s) {
-        this.Name = s;
+    public void setName(String s, String t) {
+        if(s.equals("") || (t.equals(""))){
+            throw new IllegalStateException();
+        }
+        if(s == null || t == null){
+            throw new NullPointerException();
+        }
+        this.setFirstName(s);
+        this.setLastName(t);
     }
 
     public String getName() {
-        if(this.Name != null){
-            return this.Name;
+        if(this.firstName != null && this.lastName !=null){
+            return firstName + " " + lastName;
         }
         return null;
     }
 
     public void setLastName(String s) {
+        if(s.equals("")){
+            throw new IllegalStateException();
+        }
+        if(s == null){
+            throw new NullPointerException();
+        }
         this.lastName = s;
     }
 
@@ -47,17 +65,13 @@ public class RealStudent implements Student{
     }
 
     public ArrayList<Course> viewAllCourses() {
-        if(this.courses.size() >0){
             return courses;
-        }
-        return null;
     }
 
     public Course dropCourse(Course s) {
         int index = -1;
         for(int i =0; i< this.courses.size();i++){
-            Course temp = courses.get(i);
-            if(temp == s){
+            if(courses.get(i) == s){
                 index=i;
             }
         }
@@ -65,15 +79,12 @@ public class RealStudent implements Student{
             return null;
         }
         Course temp = courses.get(index);
-        for(int i = index + 1; i < this.courses.size(); i++) {
-            this.courses.set((i-1), this.courses.get(i));
-        }
+        courses.remove(index);
         return temp;
     }
 
     public void takeCourse(Course s) {
-        int temp = this.courses.size() +1;
-        this.courses.set(temp, s);
+        this.courses.add(s);
     }
 
     public void setDepartment(Department s) {
@@ -86,10 +97,12 @@ public class RealStudent implements Student{
         return this.department;
     }
 
-
     public void setId(Long z) {
         if(z>0){
             this.id = z;
+        }
+        else{
+        throw new IllegalArgumentException();
         }
     }
 

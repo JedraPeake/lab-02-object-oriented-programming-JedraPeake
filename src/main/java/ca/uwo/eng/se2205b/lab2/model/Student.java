@@ -13,7 +13,7 @@ public interface Student {
     public void setLastName(String s);
     public String getLastName();
 
-    public void setName(String s);
+    public void setName(String s, String t);
     public String getName();
 
 
