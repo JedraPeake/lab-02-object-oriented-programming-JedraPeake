@@ -1,6 +1,7 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,26 +9,35 @@ import java.util.List;
  */
 public class RealDepartment implements Department {
     public String name;
-    public List<Student> students;
-    public List<Course> courses;
+    ArrayList<Student > students= new ArrayList<Student>();
+    ArrayList<Course > courses= new ArrayList<Course>();
 
 
     public String getName() {
+        if(this.name == null){
+            return null;
+        }
         return this.name;
     }
 
     public void setName(@Nonnull String name) {
+        if(name.equals("")){
+            throw new IllegalArgumentException();
+        }
         this.name = name;
     }
 
     public void enrollStudent(@Nonnull Student student) {
+        if(student  == null){
+            throw new NullPointerException();
+        }
         students.add(student);
     }
 
     public Student removeStudent(@Nonnull Student student) {
         int temp = -1;
         for (int i = 0; i < students.size() ; i++){
-            if(students.contains(student)){
+            if(student == students.get(i)){
                 temp = i;
             }
         }
@@ -50,16 +60,16 @@ public class RealDepartment implements Department {
     public Course removeCourse(@Nonnull Course course) {
         int temp = -1;
         for (int i = 0; i < courses.size() ; i++){
-            if(courses.contains(course)){
+            if(course == courses.get(i)){
                 temp = i;
             }
         }
-        if(temp == -1) {
-            return null;
+        if(temp != -1) {
+            Course removed = courses.get(temp);
+            courses.remove(temp);
+            return removed;
         }
-        Course removed = courses.get(temp);
-        courses.remove(temp);
-        return removed;
+        return null;
     }
 
     public List<Course> getCourses() {
