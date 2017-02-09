@@ -98,7 +98,7 @@ public class RealCourse implements Course{
         me.setFirstName("hi");
         Student meme = new RealStudent();
         meme.setFirstName("hey");
-        temp.setMaxStudents(2);
+        temp.setMaxStudents(1);
         temp.enrollStudent(me);
         temp.enrollStudent(meme);
         System.out.println(temp.getEnrolledStudents());

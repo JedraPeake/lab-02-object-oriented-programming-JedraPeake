@@ -12,7 +12,6 @@ public class RealDepartment implements Department {
     ArrayList<Student > students= new ArrayList<Student>();
     ArrayList<Course > courses= new ArrayList<Course>();
 
-
     public String getName() {
         if(this.name == null){
             return null;
