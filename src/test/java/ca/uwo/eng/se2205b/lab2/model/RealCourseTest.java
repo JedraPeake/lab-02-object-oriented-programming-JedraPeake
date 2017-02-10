@@ -175,8 +175,8 @@ public class RealCourseTest {
         ArrayList<Student> help= new ArrayList<Student>();
         assertEquals(help.toString() , c.toString() );
 
-        c.enrollStudent(s);
-        help.add(s);
-        assertEquals("[" + s.toString()+  "]" , c.toString() );
+//        c.enrollStudent(s);
+//        help.add(s);
+//        assertEquals("[" + s.toString()+  "]" , c.toString() );
     }
 }

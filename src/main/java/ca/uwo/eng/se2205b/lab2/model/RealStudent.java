@@ -141,18 +141,19 @@ public class RealStudent implements Student{
 
     @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("["); //= "[";
-        for( int i =0; i< courses.size() ; i++) {
-            if(i==0){
-                sb.append( courses. get(i) );
-            }
-            else {
-                sb.append(", ");
-                sb.append(courses.get(i) );
-            }
-        }
-        return sb +"]";
+        return "[" + toStringHelper() + "]";
+    }
+    private int counter= -1;
+    private String toStringHelper() {
+        counter ++;
+
+        if (courses.size() == 0)
+            return "";
+
+        if (courses.size() == counter-1)
+            return "" + courses.get(counter-1) ;
+
+        return courses.get(counter) + ", ";// + toStringHelper( courses. ref.link);
     }
 
     @Override
