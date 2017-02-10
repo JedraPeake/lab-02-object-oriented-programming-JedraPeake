@@ -60,4 +60,8 @@ public interface Department {
      */
     public List<Course> getCourses();
 
+    public void enrollStudentlink(@Nonnull Student student);
+    public Student removeStudentlink(@Nonnull Student student);
+    public void addCourselink(@Nonnull Course course);
+    public Course removeCourselink(@Nonnull Course course);
 }

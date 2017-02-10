@@ -1,11 +1,11 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test the {@link Department} implementation.
@@ -14,10 +14,6 @@ public class RealDepartmentTest {
     private Course temp = new RealCourse();
     private Department tempD = new RealDepartment();
     private Student me = new RealStudent();
-
-    @Before
-    public void before() throws CourseMaxCapacityStoreException {
-    }
     /**
      * Test the name property
      */
@@ -135,5 +131,20 @@ public class RealDepartmentTest {
         assertEquals(me2, tempD.removeStudent(me2));
         assertEquals(me3, tempD.removeStudent(me3));
         assertEquals(me4, tempD.removeStudent(me4));
+    }
+    @Test
+    public void relationship() {
+        Student s = new RealStudent() ;
+        Course c = new RealCourse() ;
+        Department d = new RealDepartment();
+
+        d.addCourse(c);
+        d.enrollStudent(s);
+        assertTrue(d.getEnrolledStudents().contains(s));
+        assertTrue(d.getCourses().contains(c));
+
+        //dont work....
+        assertTrue(s.getDepartment().equals(d));
+        assertTrue(c.getDepartment().equals(d));
     }
 }

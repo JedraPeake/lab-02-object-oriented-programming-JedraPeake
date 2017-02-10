@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class RealDepartment implements Department {
     public String name;
-    ArrayList<Student > students= new ArrayList<Student>();
     ArrayList<Course > courses= new ArrayList<Course>();
+    ArrayList<Student> students = new ArrayList<>();
 
     public String getName() {
         if(this.name == null){
@@ -31,9 +31,33 @@ public class RealDepartment implements Department {
             throw new NullPointerException();
         }
         students.add(student);
+        student.setDepartmentlink(this);
+    }
+
+    public void enrollStudentlink(@Nonnull Student student) {
+        if(student  == null){
+            throw new NullPointerException();
+        }
+        students.add(student);
     }
 
     public Student removeStudent(@Nonnull Student student) {
+        int temp = -1;
+        for (int i = 0; i < students.size() ; i++){
+            if(student == students.get(i)){
+                temp = i;
+            }
+        }
+        if(temp == -1) {
+            return null;
+        }
+        student.setDepartmentlink(null);
+        Student removed = students.get(temp);
+        students.remove(temp);
+        return removed;
+    }
+
+    public Student removeStudentlink(@Nonnull Student student) {
         int temp = -1;
         for (int i = 0; i < students.size() ; i++){
             if(student == students.get(i)){
@@ -54,9 +78,30 @@ public class RealDepartment implements Department {
 
     public void addCourse(@Nonnull Course course) {
         this.courses.add(course);
+        course.setDepartmentlink(this);
+    }
+
+    public void addCourselink(@Nonnull Course course) {
+        this.courses.add(course);
     }
 
     public Course removeCourse(@Nonnull Course course) {
+        int temp = -1;
+        for (int i = 0; i < courses.size() ; i++){
+            if(course == courses.get(i)){
+                temp = i;
+            }
+        }
+        if(temp != -1) {
+            course.setDepartmentlink(null);
+            Course removed = courses.get(temp);
+            courses.remove(temp);
+            return removed;
+        }
+        return null;
+    }
+
+    public Course removeCourselink(@Nonnull Course course) {
         int temp = -1;
         for (int i = 0; i < courses.size() ; i++){
             if(course == courses.get(i)){

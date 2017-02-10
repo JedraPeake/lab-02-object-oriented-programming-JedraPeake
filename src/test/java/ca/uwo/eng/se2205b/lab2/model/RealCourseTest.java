@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 /**
  * Test the {@link Course} implementation
  */
@@ -64,7 +66,7 @@ public class RealCourseTest {
      * Test that adding/removing students behaves
      */
     @Test
-    public void students() throws CourseMaxCapacityStoreException {
+    public void students(){
         temp.setMaxStudents(1);
         temp.enrollStudent(me);
         me.setFirstName("J");
@@ -73,41 +75,41 @@ public class RealCourseTest {
         assertEquals( help ,temp.getEnrolledStudents());
     }
     @Test
-    public void emptyStudentsList() throws CourseMaxCapacityStoreException {
+    public void emptyStudentsList() {
         ArrayList<Student> help= new ArrayList<Student>();
         assertEquals(help,temp.getEnrolledStudents());
     }
     @Test(expected = CourseMaxCapacityStoreException.class )
-    public void fullStudentsList() throws CourseMaxCapacityStoreException{
+    public void fullStudentsList() {
        temp.setMaxStudents(0);
        temp.enrollStudent(me);
     }
     @Test(expected = NullPointerException.class )
-    public void nullStudents() throws CourseMaxCapacityStoreException{
+    public void nullStudents() {
         temp.setMaxStudents(1);
         temp.enrollStudent(null);
     }
     @Test(expected = NullPointerException.class )
-    public void nullRemoveStudents() throws CourseMaxCapacityStoreException{
+    public void nullRemoveStudents() {
         temp.setMaxStudents(1);
         temp.enrollStudent(me);
         temp.removeStudent(null);
     }
     @Test
-    public void removeStudent() throws CourseMaxCapacityStoreException{
+    public void removeStudent(){
         temp.setMaxStudents(1);
         temp.enrollStudent(me);
         assertEquals(me,temp.removeStudent(me));
     }
     @Test
-    public void removeStudentNotStored() throws CourseMaxCapacityStoreException{
+    public void removeStudentNotStored() {
         temp.setMaxStudents(1);
         temp.enrollStudent(me);
         Student maz = new RealStudent();
         assertEquals(null,temp.removeStudent(maz));
     }
     @Test
-    public void removeStudents() throws CourseMaxCapacityStoreException{
+    public void removeStudents() {
         temp.setMaxStudents(5);
         temp.enrollStudent(me);
         Student temp1 = new RealStudent();
@@ -125,7 +127,7 @@ public class RealCourseTest {
         assertEquals(temp1,temp.removeStudent(temp1));
     }
     @Test
-    public void removeStudentsNotStored() throws CourseMaxCapacityStoreException{
+    public void removeStudentsNotStored() {
         temp.setMaxStudents(5);
         temp.enrollStudent(me);
         Student temp1 = new RealStudent();
@@ -145,5 +147,23 @@ public class RealCourseTest {
         assertEquals(null,temp.removeStudent(temp6));
         assertEquals(null,temp.removeStudent(temp7));
         assertEquals(null,temp.removeStudent(temp8));
+    }
+
+    @Test
+    public void relationship() {
+        Student s = new RealStudent() ;
+        Course c = new RealCourse() ;
+        Department d = new RealDepartment();
+        c.setMaxStudents(10);
+
+        c.enrollStudent(s);
+        c.setDepartment(d);
+
+        assertTrue(c.getDepartment().equals(d));
+        assertTrue(c.getEnrolledStudents().contains(s));
+
+//        //dont work....
+        assertTrue(s.viewAllCourses().contains(c));
+        assertTrue(d.getCourses().contains(c));
     }
 }

@@ -6,11 +6,11 @@ import java.util.ArrayList;
  * Created by PeakeAndSons on 2017-02-03.
  */
 public class RealStudent implements Student{
-    public String firstName;
-    public String lastName;
+    String firstName;
+    String lastName;
     ArrayList<Course> courses= new ArrayList<Course>();
     public Department department;
-    public Long id;
+    Long id;
 
     public void setFirstName(String s) {
         if(s.equals("")){
@@ -64,11 +64,40 @@ public class RealStudent implements Student{
         return null;
     }
 
+    public void setId(Long z) {
+        if(z>0){
+            this.id = z;
+        }
+        else{
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
     public ArrayList<Course> viewAllCourses() {
             return courses;
     }
 
     public Course dropCourse(Course s) {
+        int index = -1;
+        for(int i =0; i< this.courses.size();i++){
+            if(courses.get(i) == s){
+                index=i;
+            }
+        }
+        if(index == -1){
+            return null;
+        }
+        s.removeStudentlink(this);
+        Course temp = courses.get(index);
+        courses.remove(index);
+        return temp;
+    }
+
+    public Course dropCourselink (Course s) {
         int index = -1;
         for(int i =0; i< this.courses.size();i++){
             if(courses.get(i) == s){
@@ -85,9 +114,21 @@ public class RealStudent implements Student{
 
     public void takeCourse(Course s) {
         this.courses.add(s);
+        s.enrollStudentlink(this);
+    }
+
+    public void takeCourselink (Course s) {
+        this.courses.add(s);
     }
 
     public void setDepartment(Department s) {
+        if(s != null){
+            this.department = s;
+            s.enrollStudentlink(this);
+        }
+    }
+
+    public void setDepartmentlink(Department s) {
         if(s != null){
             this.department = s;
         }
@@ -95,27 +136,6 @@ public class RealStudent implements Student{
 
     public Department getDepartment() {
         return this.department;
-    }
-
-    public void setId(Long z) {
-        if(z>0){
-            this.id = z;
-        }
-        else{
-        throw new IllegalArgumentException();
-        }
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public static void main(String arg[])
-    {
-        Student obj = new RealStudent();
-        obj. setFirstName("jedra");
-        System.out.println(obj.getFirstName());
-        System.out.println(obj.getLastName());
     }
 
 }

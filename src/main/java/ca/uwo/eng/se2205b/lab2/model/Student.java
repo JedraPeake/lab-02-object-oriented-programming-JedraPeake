@@ -16,7 +16,6 @@ public interface Student {
     public void setName(String s, String t);
     public String getName();
 
-
     public ArrayList<Course> viewAllCourses();
     public Course dropCourse(Course s);
     public void takeCourse(Course s);
@@ -26,6 +25,10 @@ public interface Student {
 
     public void setId(Long z);
     public Long getId();
+
+    public void setDepartmentlink(Department s);
+    public void takeCourselink (Course s);
+    public Course dropCourselink (Course s);
 }
 
 

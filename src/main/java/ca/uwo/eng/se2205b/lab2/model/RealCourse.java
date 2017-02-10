@@ -15,8 +15,8 @@ public class RealCourse implements Course{
     String courseCode;
     String courseName;
     Department department;
-    int cap;
-    ArrayList<Student> students= new ArrayList<Student>();
+    int cap =10;
+    public ArrayList<Student> students= new ArrayList<Student>();
 
     public String getCourseCode(){
      return this.courseCode;
@@ -35,6 +35,11 @@ public class RealCourse implements Course{
 
     public void setDepartment(Department newDepartment){
         this.department = newDepartment;
+        newDepartment.addCourselink(this);
+    }
+
+    public void setDepartmentlink(Department newDepartment){
+        this.department = newDepartment;
     }
 
     public Department getDepartment(){
@@ -48,16 +53,31 @@ public class RealCourse implements Course{
         return this.cap;
     }
 
-    public void enrollStudent(@Nonnull Student student) throws CourseMaxCapacityStoreException{
-        if(student == null){
+    public void enrollStudent(@Nonnull Student student){
+
+            if (student == null) {
+                throw new NullPointerException();
+            }
+            if (this.cap > this.students.size()) {
+                this.students.add(student);
+                student.takeCourselink(this);
+            } else {
+                throw new CourseMaxCapacityStoreException(getName(), student);
+            }
+
+    }
+
+    public void enrollStudentlink (@Nonnull Student student){
+
+        if (student == null) {
             throw new NullPointerException();
         }
-        if (this.cap > this.students.size()){
+        if (this.cap > this.students.size()) {
             this.students.add(student);
+        } else {
+            throw new CourseMaxCapacityStoreException(getName(), student);
         }
-        else{
-            throw new CourseMaxCapacityStoreException();
-        }
+
     }
 
     public Student removeStudent(@Nonnull Student student){
@@ -74,7 +94,26 @@ public class RealCourse implements Course{
         if(temp == -1) {
             return null;
         }
+        student.dropCourselink(this);
+        Student removed = students.get(temp);
+        students.remove(temp);
+        return removed;
+    }
 
+    public Student removeStudentlink(@Nonnull Student student){
+        if(student == null){
+            throw new NullPointerException();
+        }
+        int temp = -1;
+        for (int i = 0; i < students.size() ; i++){
+            if (student == students.get(i)){
+                temp = i ;
+            }
+        }
+
+        if(temp == -1) {
+            return null;
+        }
         Student removed = students.get(temp);
         students.remove(temp);
         return removed;
@@ -90,21 +129,5 @@ public class RealCourse implements Course{
 
     public void setMaxStudents(int n){
         this.cap = n;
-    }
-
-    public static void main(String [] args) throws CourseMaxCapacityStoreException {
-        Course temp = new RealCourse();
-        Student me = new RealStudent();
-        me.setFirstName("hi");
-        Student meme = new RealStudent();
-        meme.setFirstName("hey");
-        temp.setMaxStudents(1);
-        temp.enrollStudent(me);
-        temp.enrollStudent(meme);
-        System.out.println(temp.getEnrolledStudents());
-        temp.removeStudent(me);
-        System.out.println(temp.getEnrolledStudents());
-
-
     }
 }

@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test the {@link Student} implementation.
@@ -53,7 +55,8 @@ public class RealStudentTest {
         me.takeCourse(temp);
         ArrayList<Course> help= new ArrayList<Course>();
         help.add(temp);
-        assertEquals(help , me.viewAllCourses() );
+        assertArrayEquals( help.toArray(), me.viewAllCourses().toArray() );
+
     }
     @Test
     public void emptyCourses() {
@@ -121,9 +124,21 @@ public class RealStudentTest {
     public void idNegative() {
         me.setId(-78071073L);
     }
+    @Test
+    public void relationship() {
+        Student s = new RealStudent() ;
+        Course c = new RealCourse() ;
+        Department d = new RealDepartment();
+        c.setMaxStudents(100);
 
+        s.setDepartment(d);
+        s.takeCourse(c);
+        assertTrue(s.viewAllCourses().contains(c));
+        assertTrue(s.getDepartment().equals(d));
 
+        //dont work....
+        assertTrue(d.getEnrolledStudents().contains(s));
+        assertTrue(c.getEnrolledStudents().contains(s));
 
-
-
+    }
 }

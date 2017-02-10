@@ -53,7 +53,7 @@ public interface Course {
      *
      * @throws IllegalStateException if there is no room.
      */
-    public void enrollStudent(@Nonnull Student student) throws CourseMaxCapacityStoreException;
+    public void enrollStudent(@Nonnull Student student);
 
     /**
      * Remove a {@link Student} from a {@code Course}
@@ -70,4 +70,7 @@ public interface Course {
 
     public void setMaxStudents(int n);
 
+    public Student removeStudentlink(@Nonnull Student student);
+    public void enrollStudentlink (@Nonnull Student student);
+    public void setDepartmentlink(Department newDepartment);
 }
