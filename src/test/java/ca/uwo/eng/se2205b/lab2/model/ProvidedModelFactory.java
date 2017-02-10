@@ -13,7 +13,7 @@ public class ProvidedModelFactory {
      *
      * @return List of Department values
      */
-    public static List<Department> createModel() {
+    public static <T> List<Department> createModel (List<? extends T> list) {
         Course AM1413 = new RealCourse();
         AM1413.setMaxStudents(10);
         AM1413.setName("AM1413");

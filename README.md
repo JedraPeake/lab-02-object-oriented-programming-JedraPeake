@@ -1,10 +1,9 @@
 # lab-02-oop
 ##Question 5
 ####Why do we separate the interfaces from the implementation? Additionally, why are the implementations "package-private"?
-
-
+It feels a lot cleaner, but I suspect its more to do with the fact that once the system is complete you only wanna be using the interface not the implementation, which probably makes it easier for clients as well. This leads onto why it's package private basically we want to hide the methods. 
 ####What issues did you encounter in this model's implementation?
-
+Getting the testing to work for the model was really hard, and I kept wanting to remove the static and making it a unmodifiable list as this made trying to get a testcase challenging
 
 ####Did you find any implementation errors when you wrote test cases?
 Yes, in the majority of my remove or drop functions I used an if with contains instead of equals so they would always return the last element in the last instead of the needed index.
