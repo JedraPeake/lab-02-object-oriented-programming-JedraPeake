@@ -16,7 +16,7 @@ public class RealCourse implements Course{
     String courseName;
     Department department;
     int cap =10;
-    public ArrayList<Student> students= new ArrayList<Student>();
+    ArrayList<Student> students= new ArrayList<Student>();
 
     public String getCourseCode(){
      return this.courseCode;
@@ -130,4 +130,43 @@ public class RealCourse implements Course{
     public void setMaxStudents(int n){
         this.cap = n;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("["); //= "[";
+        for( int i =0; i< students.size() ; i++) {
+            if(i==0){
+                sb.append( students.get(i) );
+            }
+            else {
+                sb.append(", ");
+                sb.append(students.get(i) );
+            }
+        }
+        return sb +"]";
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) {
+            return true;
+        }
+
+        List<?> tmp = (List<?>)o;
+
+        if( students.size() == tmp.size()) {
+            for(int i = 0; i < students.size(); i++ ) {
+                if ( students.get(i) == null && students.get(i) != tmp.get(i)) {
+                    return false;
+                } else if ( students.get(i) != null && !( students.get(i)).equals(tmp.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 }
+

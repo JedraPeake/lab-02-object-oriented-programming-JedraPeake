@@ -80,6 +80,8 @@ public class ProvidedModelFactory {
         JT.setName("Jane","Tarzan");
 
         Department ECE = new RealDepartment();
+        ECE.addCourse(SE2205);
+        ECE.addCourse(ES1036);
         ECE.setName("ECE");
         ECE.enrollStudent(SM);
         ECE.enrollStudent(GW);

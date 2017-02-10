@@ -8,7 +8,7 @@ import java.util.List;
  * Created by PeakeAndSons on 2017-02-03.
  */
 public class RealDepartment implements Department {
-    public String name;
+    String name;
     ArrayList<Course > courses= new ArrayList<Course>();
     ArrayList<Student> students = new ArrayList<>();
 
@@ -118,5 +118,42 @@ public class RealDepartment implements Department {
 
     public List<Course> getCourses() {
         return this.courses;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("["); //= "[";
+        for( int i =0; i< students.size() ; i++) {
+            if(i==0){
+                sb.append( students.get(i) );
+            }
+            else {
+                sb.append(", ");
+                sb.append(students.get(i) );
+            }
+        }
+        return sb +"]";
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) {
+            return true;
+        }
+
+        List<?> tmp = (List<?>)o;
+
+        if( students.size() == tmp.size()) {
+            for(int i = 0; i < students.size(); i++ ) {
+                if ( students.get(i) == null && students.get(i) != tmp.get(i)) {
+                    return false;
+                } else if ( students.get(i) != null && !( students.get(i)).equals(tmp.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

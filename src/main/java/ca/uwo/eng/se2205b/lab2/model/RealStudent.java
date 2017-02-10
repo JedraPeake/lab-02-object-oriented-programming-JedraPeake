@@ -1,6 +1,7 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by PeakeAndSons on 2017-02-03.
@@ -9,7 +10,7 @@ public class RealStudent implements Student{
     String firstName;
     String lastName;
     ArrayList<Course> courses= new ArrayList<Course>();
-    public Department department;
+    Department department;
     Long id;
 
     public void setFirstName(String s) {
@@ -136,6 +137,43 @@ public class RealStudent implements Student{
 
     public Department getDepartment() {
         return this.department;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("["); //= "[";
+        for( int i =0; i< courses.size() ; i++) {
+            if(i==0){
+                sb.append( courses. get(i) );
+            }
+            else {
+                sb.append(", ");
+                sb.append(courses.get(i) );
+            }
+        }
+        return sb +"]";
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) {
+            return true;
+        }
+
+        List<?> tmp = (List<?>)o;
+
+        if( courses.size() == tmp.size()) {
+            for(int i = 0; i < courses.size(); i++ ) {
+                if ( courses.get(i) == null && courses.get(i) != tmp.get(i)) {
+                    return false;
+                } else if ( courses.get(i) != null && !( courses.get(i)).equals(tmp.get(i))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 }

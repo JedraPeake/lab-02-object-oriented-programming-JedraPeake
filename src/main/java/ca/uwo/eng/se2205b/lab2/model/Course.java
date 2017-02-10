@@ -73,4 +73,7 @@ public interface Course {
     public Student removeStudentlink(@Nonnull Student student);
     public void enrollStudentlink (@Nonnull Student student);
     public void setDepartmentlink(Department newDepartment);
+
+    public String toString();
+    public boolean equals(Object o);
 }

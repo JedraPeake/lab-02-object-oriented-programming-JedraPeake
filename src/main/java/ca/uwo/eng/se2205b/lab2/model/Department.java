@@ -64,4 +64,7 @@ public interface Department {
     public Student removeStudentlink(@Nonnull Student student);
     public void addCourselink(@Nonnull Course course);
     public Course removeCourselink(@Nonnull Course course);
+
+    public String toString();
+    public boolean equals(Object o);
 }

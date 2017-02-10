@@ -166,4 +166,17 @@ public class RealCourseTest {
         assertTrue(s.viewAllCourses().contains(c));
         assertTrue(d.getCourses().contains(c));
     }
+    @Test
+    public void ts() {
+        Student s = new RealStudent() ;
+        Course c = new RealCourse() ;
+        c.setMaxStudents(100);
+
+        ArrayList<Student> help= new ArrayList<Student>();
+        assertEquals(help.toString() , c.toString() );
+
+        c.enrollStudent(s);
+        help.add(s);
+        assertEquals("[" + s.toString()+  "]" , c.toString() );
+    }
 }

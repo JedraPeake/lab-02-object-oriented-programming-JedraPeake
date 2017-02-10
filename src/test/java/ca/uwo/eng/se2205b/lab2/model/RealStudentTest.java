@@ -141,4 +141,18 @@ public class RealStudentTest {
         assertTrue(c.getEnrolledStudents().contains(s));
 
     }
+    @Test
+    public void ts() {
+        Student s = new RealStudent() ;
+        Course c = new RealCourse() ;
+        c.setMaxStudents(100);
+
+        ArrayList<Course> help= new ArrayList<Course>();
+        assertEquals(help.toString() , s.toString() );
+
+        s.takeCourse(c);
+        help.add(c);
+        assertEquals(help.toString() , s.toString() );
+    }
+
 }

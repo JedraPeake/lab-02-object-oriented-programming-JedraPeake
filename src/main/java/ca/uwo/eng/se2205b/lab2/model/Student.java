@@ -29,6 +29,9 @@ public interface Student {
     public void setDepartmentlink(Department s);
     public void takeCourselink (Course s);
     public Course dropCourselink (Course s);
+
+    public String toString();
+    public boolean equals(Object o);
 }
 
 
