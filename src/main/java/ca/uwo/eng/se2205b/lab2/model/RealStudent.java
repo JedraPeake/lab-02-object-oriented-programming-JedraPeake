@@ -1,5 +1,6 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,15 @@ public class RealStudent implements Student{
     ArrayList<Course> courses= new ArrayList<Course>();
     Department department;
     Long id;
+
+    public RealStudent(String firstName, String lastName, long studentId, @Nullable Department department){
+        setFirstName(firstName);
+        setLastName(lastName);
+        setId(studentId);
+        if(department != null){
+            setDepartment(department);
+        }
+    }
 
     public void setFirstName(String s) {
         if(s.equals("")){

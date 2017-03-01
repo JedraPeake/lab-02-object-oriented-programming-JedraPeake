@@ -15,9 +15,9 @@ public class RealCourseTest {
     /**
      * Test the name property
      */
-    private Course temp = new RealCourse();
-    private Department tempD = new RealDepartment();
-    private Student me = new RealStudent();
+    private Course temp = new RealCourse("App","A",null,4);
+    private Department tempD = new RealDepartment("D");
+    private Student me = new RealStudent("J","P",78071073L,null);
 
     @Before
     public void before() throws CourseMaxCapacityStoreException {
@@ -105,17 +105,17 @@ public class RealCourseTest {
     public void removeStudentNotStored() {
         temp.setMaxStudents(1);
         temp.enrollStudent(me);
-        Student maz = new RealStudent();
+        Student maz = new RealStudent("J","P",78071073L,null);
         assertEquals(null,temp.removeStudent(maz));
     }
     @Test
     public void removeStudents() {
         temp.setMaxStudents(5);
         temp.enrollStudent(me);
-        Student temp1 = new RealStudent();
-        Student temp2 = new RealStudent();
-        Student temp3 = new RealStudent();
-        Student temp4 = new RealStudent();
+        Student temp1 = new RealStudent("J","P",78071073L,null);
+        Student temp2 = new RealStudent("J","P",78071073L,null);
+        Student temp3 = new RealStudent("J","P",78071073L,null);
+        Student temp4 = new RealStudent("J","P",78071073L,null);
         temp.enrollStudent(temp1);
         temp.enrollStudent(temp2);
         temp.enrollStudent(temp3);
@@ -130,14 +130,14 @@ public class RealCourseTest {
     public void removeStudentsNotStored() {
         temp.setMaxStudents(5);
         temp.enrollStudent(me);
-        Student temp1 = new RealStudent();
-        Student temp2 = new RealStudent();
-        Student temp3 = new RealStudent();
-        Student temp4 = new RealStudent();
-        Student temp5 = new RealStudent();
-        Student temp6 = new RealStudent();
-        Student temp7 = new RealStudent();
-        Student temp8 = new RealStudent();
+        Student temp1 = new RealStudent("J","P",78071073L,null);
+        Student temp2 = new RealStudent("J","P",78071073L,null);
+        Student temp3 = new RealStudent("J","P",78071073L,null);
+        Student temp4 = new RealStudent("J","P",78071073L,null);
+        Student temp5 = new RealStudent("J","P",78071073L,null);
+        Student temp6 = new RealStudent("J","P",78071073L,null);
+        Student temp7 = new RealStudent("J","P",78071073L,null);
+        Student temp8 = new RealStudent("J","P",78071073L,null);
         temp.enrollStudent(temp1);
         temp.enrollStudent(temp2);
         temp.enrollStudent(temp3);
@@ -151,10 +151,9 @@ public class RealCourseTest {
 
     @Test
     public void relationship() {
-        Student s = new RealStudent() ;
-        Course c = new RealCourse() ;
-        Department d = new RealDepartment();
-        c.setMaxStudents(10);
+        Student s = new RealStudent("J","P",78071073L,null) ;
+        Course c = new RealCourse("App","A",null,4) ;
+        Department d = new RealDepartment("D");
 
         c.enrollStudent(s);
         c.setDepartment(d);
@@ -168,8 +167,8 @@ public class RealCourseTest {
     }
     @Test
     public void ts() {
-        Student s = new RealStudent() ;
-        Course c = new RealCourse() ;
+        Student s = new RealStudent("J","P",78071073L,null) ;
+        Course c = new RealCourse("App","A",null,4);
         c.setMaxStudents(100);
 
         ArrayList<Student> help= new ArrayList<Student>();

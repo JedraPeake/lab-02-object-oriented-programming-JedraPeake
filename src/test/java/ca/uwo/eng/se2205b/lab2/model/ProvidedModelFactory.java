@@ -14,89 +14,63 @@ public class ProvidedModelFactory {
      * @return List of Department values
      */
     public static <T> List<Department> createModel (List<? extends T> list) {
-        Course AM1413 = new RealCourse();
-        AM1413.setMaxStudents(10);
-        AM1413.setName("AM1413");
 
-        Course ES1022 = new RealCourse();
-        ES1022.setMaxStudents(10);
-        ES1022.setName("ES1022");
+        Course AM1413 = new RealCourse("Calculus","AM1413",null,6);
 
-        Course ES1036 = new RealCourse();
-        ES1036.setMaxStudents(10);
-        ES1036.setName("ES1036");
+        Course ES1022 = new RealCourse("Statics","ES1022",null,6);
 
-        Course SE2205 = new RealCourse();
-        SE2205.setMaxStudents(10);
-        SE2205.setName("SE2205");
+        Course ES1036 = new RealCourse("Programming Fundamentals I","ES1036",null,5);
 
-        Student JS = new RealStudent();
-        JS.setName("John", "Smith");
-        JS.setId(1111L);
+        Course SE2205 = new RealCourse("Data Structures and Algorithms","SE2205",null,10);
+
+        Student JS = new RealStudent("John", "Smith",1111L,null);
         JS.takeCourse(AM1413);
         JS.takeCourse(ES1036);
 
-        Student SM = new RealStudent();
-        SM.setId(2222L);
-        SM.setName("Sarah","McLachlan");
+        Student SM = new RealStudent("Sarah","McLachlan",2222L,null);
         SM.takeCourse(AM1413);
         SM.takeCourse(ES1036);
         SM.takeCourse(SE2205);
 
-        Student GW = new RealStudent();
-        GW.setId(3333L);
-        GW.setName("Gene", "Wilder");
+        Student GW = new RealStudent("Gene", "Wilder",3333L,null);
         GW.takeCourse(AM1413);
         GW.takeCourse(SE2205);
 
-        Student RW = new RealStudent();
-        RW.setId(4444L);
-        RW.setName("Ron","Weasley");
+        Student RW = new RealStudent("Ron","Weasley",4444L,null);
         RW.takeCourse(ES1022);
         RW.takeCourse(SE2205);
 
-        Student MP = new RealStudent();
-        MP.setId(5555L);
-        MP.setName("Minh","Pham");
+        Student MP = new RealStudent("Minh","Pham",5555L,null);
         MP.takeCourse(AM1413);
         MP.takeCourse(ES1022);
 
-        Student GT = new RealStudent();
-        GT.setId(6666L);
-        GT.setName("George","Takei");
+        Student GT = new RealStudent("George","Takei",6666L,null);
         GT.takeCourse(AM1413);
         GT.takeCourse(SE2205);
 
-        Student RN = new RealStudent();
-        RN.setId(7777L);
-        RN.setName("Ralph", "Nader");
+        Student RN = new RealStudent("Ralph", "Nader",7777L,null);
         RN.takeCourse(AM1413);
         RN.takeCourse(ES1022);
         RN.takeCourse(ES1036);
         RN.takeCourse(SE2205);
 
-        Student JT = new RealStudent();
-        JT.setId(8888L);
-        JT.setName("Jane","Tarzan");
+        Student JT = new RealStudent("Jane","Tarzan",8888L, null);
 
-        Department ECE = new RealDepartment();
+        Department ECE = new RealDepartment("Electrical And Computer Engineering");
         ECE.addCourse(SE2205);
         ECE.addCourse(ES1036);
-        ECE.setName("ECE");
         ECE.enrollStudent(SM);
         ECE.enrollStudent(GW);
         ECE.enrollStudent(RW);
         ECE.enrollStudent(MP);
         ECE.enrollStudent(JT);
 
-        Department CEE = new RealDepartment();
+        Department CEE = new RealDepartment("Civil and Environmental Engineering");
         CEE.addCourse(ES1022);
-        CEE.setName("CEE");
         CEE.enrollStudent(JS);
 
-        Department AM = new RealDepartment();
+        Department AM = new RealDepartment("Applied Math");
         AM.addCourse(AM1413);
-        AM.setName("AM");
         AM.enrollStudent(GT);
         AM.enrollStudent(RN);
 

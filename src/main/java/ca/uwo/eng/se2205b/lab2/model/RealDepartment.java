@@ -12,6 +12,10 @@ public class RealDepartment implements Department {
     ArrayList<Course > courses= new ArrayList<Course>();
     ArrayList<Student> students = new ArrayList<>();
 
+    RealDepartment(String name) throws IllegalArgumentException {
+        setName(name);
+    }
+
     public String getName() {
         if(this.name == null){
             return null;
@@ -145,11 +149,11 @@ public class RealDepartment implements Department {
 
         List<?> tmp = (List<?>)o;
 
-        if( students.size() == tmp.size()) {
-            for(int i = 0; i < students.size(); i++ ) {
-                if ( students.get(i) == null && students.get(i) != tmp.get(i)) {
+        if( courses.size() == tmp.size()) {
+            for(int i = 0; i < courses.size(); i++ ) {
+                if ( courses.get(i) == null && courses.get(i) != tmp.get(i)) {
                     return false;
-                } else if ( students.get(i) != null && !( students.get(i)).equals(tmp.get(i))) {
+                } else if ( courses.get(i) != null && !( courses.get(i)).equals(tmp.get(i))) {
                     return false;
                 }
             }

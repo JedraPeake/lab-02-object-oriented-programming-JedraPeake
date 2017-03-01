@@ -11,9 +11,9 @@ import static org.junit.Assert.assertTrue;
  * Test the {@link Department} implementation.
  */
 public class RealDepartmentTest {
-    private Course temp = new RealCourse();
-    private Department tempD = new RealDepartment();
-    private Student me = new RealStudent();
+    private Course temp = new RealCourse("App","A",null,4);
+    private Department tempD = new RealDepartment("D");
+    private Student me = new RealStudent("J","P",78071073L,null);
     /**
      * Test the name property
      */
@@ -53,10 +53,10 @@ public class RealDepartmentTest {
     @Test
     public void removeCoursesNotStored() {
         tempD.addCourse(temp);
-        Course temp1 = new RealCourse();
-        Course temp2 = new RealCourse();
-        Course temp3 = new RealCourse();
-        Course temp4 = new RealCourse();
+        Course temp1 = new RealCourse("App","A",null,4);
+        Course temp2 = new RealCourse("App","A",null,4);
+        Course temp3 = new RealCourse("App","A",null,4);
+        Course temp4 = new RealCourse("App","A",null,4);
         assertEquals(temp, tempD.removeCourse(temp));
         assertEquals(null, tempD.removeCourse(temp1));
         assertEquals(null, tempD.removeCourse(temp2));
@@ -66,10 +66,10 @@ public class RealDepartmentTest {
     @Test
     public void removeCourses() {
         tempD.addCourse(temp);
-        Course temp1 = new RealCourse();
-        Course temp2 = new RealCourse();
-        Course temp3 = new RealCourse();
-        Course temp4 = new RealCourse();
+        Course temp1 = new RealCourse("App","A",null,4);
+        Course temp2 = new RealCourse("App","A",null,4);
+        Course temp3 = new RealCourse("App","A",null,4);
+        Course temp4 = new RealCourse("App","A",null,4);
         tempD.addCourse(temp1);
         tempD.addCourse(temp2);
         tempD.addCourse(temp3);
@@ -105,10 +105,10 @@ public class RealDepartmentTest {
     @Test
     public void removeStudentsNotStored() {
         tempD.enrollStudent(me);
-        Student me1 = new RealStudent();
-        Student me2 = new RealStudent();
-        Student me3 = new RealStudent();
-        Student me4 = new RealStudent();
+        Student me1 = new RealStudent("J","P",78071073L,null);
+        Student me2 = new RealStudent("J","P",78071073L,null);
+        Student me3 = new RealStudent("J","P",78071073L,null);
+        Student me4 = new RealStudent("J","P",78071073L,null);
         assertEquals(me, tempD.removeStudent(me));
         assertEquals(null, tempD.removeStudent(me1));
         assertEquals(null, tempD.removeStudent(me2));
@@ -118,10 +118,10 @@ public class RealDepartmentTest {
     @Test
     public void removeStudents() {
         tempD.enrollStudent(me);
-        Student me1 = new RealStudent();
-        Student me2 = new RealStudent();
-        Student me3 = new RealStudent();
-        Student me4 = new RealStudent();
+        Student me1 = new RealStudent("J","P",78071073L,tempD);
+        Student me2 = new RealStudent("J","P",78071073L,tempD);
+        Student me3 = new RealStudent("J","P",78071073L,tempD);
+        Student me4 = new RealStudent("J","P",78071073L,tempD);
         tempD.enrollStudent(me1);
         tempD.enrollStudent(me2);
         tempD.enrollStudent(me3);
@@ -134,9 +134,9 @@ public class RealDepartmentTest {
     }
     @Test
     public void relationship() {
-        Student s = new RealStudent() ;
-        Course c = new RealCourse() ;
-        Department d = new RealDepartment();
+        Student s = new RealStudent("J","P",78071073L,null) ;
+        Course c = new RealCourse("App","A",null,4);
+        Department d = new RealDepartment("D");
 
         d.addCourse(c);
         d.enrollStudent(s);

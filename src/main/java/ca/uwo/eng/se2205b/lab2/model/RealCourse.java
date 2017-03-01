@@ -1,6 +1,7 @@
 package ca.uwo.eng.se2205b.lab2.model;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,27 @@ public class RealCourse implements Course{
     int cap =10;
     ArrayList<Student> students= new ArrayList<Student>();
 
+    RealCourse(String name, String courseCode, @Nullable Department department, int maxOccupancy){
+        setName(name);
+        setCourseCode(courseCode);
+        if(department != null){
+            setDepartment(department);
+        }
+        setMaxStudents(maxOccupancy);
+    }
+
     public String getCourseCode(){
      return this.courseCode;
+    }
+
+    public void setCourseCode(String code){
+        if(code.equals("")){
+            throw new IllegalArgumentException();
+        }
+        if(code ==null){
+            this.courseCode = null;
+        }
+        this.courseCode = code;
     }
 
     public void setName(@Nonnull String name){

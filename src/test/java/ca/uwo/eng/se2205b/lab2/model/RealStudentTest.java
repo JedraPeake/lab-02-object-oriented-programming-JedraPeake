@@ -12,9 +12,9 @@ import static org.junit.Assert.assertTrue;
  * Test the {@link Student} implementation.
  */
 public class RealStudentTest {
-    private Course temp = new RealCourse();
-    private Department tempD = new RealDepartment();
-    private Student me = new RealStudent();
+    private Course temp = new RealCourse("App","A",null,4);
+    private Department tempD = new RealDepartment("D");
+    private Student me = new RealStudent("J","P",78071073L,null);
 
     /**
      * Test the name property
@@ -73,7 +73,7 @@ public class RealStudentTest {
     @Test
     public void removecourses() {
         me.takeCourse(temp);
-         Course temp1 = new RealCourse();
+         Course temp1 = new RealCourse("App","A",null,4);
         ArrayList<Course> help= new ArrayList<Course>();
         assertEquals(null , me.dropCourse(temp1) );
         assertEquals(temp , me.dropCourse(temp) );
@@ -81,10 +81,10 @@ public class RealStudentTest {
     @Test
     public void addcourses() {
         me.takeCourse(temp);
-        Course temp1 = new RealCourse();
-        Course temp2 = new RealCourse();
-        Course temp3 = new RealCourse();
-        Course temp4 = new RealCourse();
+        Course temp1 = new RealCourse("App","A",null,4);
+        Course temp2 = new RealCourse("App","A",null,4);
+        Course temp3 = new RealCourse("App","A",null,4);
+        Course temp4 = new RealCourse("App","A",null,4);
         me.takeCourse(temp1);
         me.takeCourse(temp2);
         me.takeCourse(temp3);
@@ -126,26 +126,23 @@ public class RealStudentTest {
     }
     @Test
     public void relationship() {
-        Student s = new RealStudent() ;
-        Course c = new RealCourse() ;
-        Department d = new RealDepartment();
-        c.setMaxStudents(100);
+        Student s = new RealStudent("J","P",123L,null) ;
+        Course c = new RealCourse("App","A",null,4) ;
+        Department d = new RealDepartment("D");
 
         s.setDepartment(d);
         s.takeCourse(c);
         assertTrue(s.viewAllCourses().contains(c));
         assertTrue(s.getDepartment().equals(d));
 
-        //dont work....
         assertTrue(d.getEnrolledStudents().contains(s));
         assertTrue(c.getEnrolledStudents().contains(s));
 
     }
     @Test
     public void ts() {
-        Student s = new RealStudent() ;
-        Course c = new RealCourse() ;
-        c.setMaxStudents(100);
+        Student s = new RealStudent("J","P",123L,null) ;
+        Course c = new RealCourse("App","A",null,4) ;
 
         ArrayList<Course> help= new ArrayList<Course>();
         assertEquals(help.toString() , s.toString() );
